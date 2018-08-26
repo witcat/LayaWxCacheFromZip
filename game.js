@@ -148,10 +148,34 @@ function boot() {
           }
         })
       })
-      if (!isDirExists) {
-        console.log('缓存目录已新建')
-        fs.mkdirSync(cacheURL)
+      if (isDirExists) {
+        console.log('删除旧的缓存文件')
+        function cleanDir(target) {
+          return new Promise(async(rs,rj)=>{
+            let list = fs.readdirSync(target)
+            for (let i = 0; i < list.length; i++) {
+              if (list[i].includes('.')) {
+                await new Promise((rs, rj) => {
+                  fs.unlink({
+                    filePath: target + list[i],
+                    complete() {
+                      rs()
+                    }
+                  })
+                })
+              } else {
+                await cleanDir(target + list[i] + '/')
+              }
+            }
+            fs.rmdirSync(target)
+            rs()
+          })
+        }
+        await cleanDir(cacheURL)
       }
+
+      console.log('缓存目录已新建')
+      fs.mkdirSync(cacheURL)
       await new Promise((rs, rj) => {
         fs.unzip({
           zipFilePath: bundleURI,
