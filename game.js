@@ -197,8 +197,8 @@ function boot() {
     //此时修改basePath为本地的缓存路径
     //这时所有文件将从本地读取，这样做原因是laya.wxmini.js无法自动缓存除声音图片外的文件，
     //即使使用downloadfile缓存也无法通过loader加载
-    //如果用微信本身的api播放声音，声音也是无法自动缓存的，但这样可以统一缓存系统，两者api可以同时调用缓存的文件
-    //最简单的解决方法是在加载之前将文件转移到客户端，这样不用修改laya本身的文件，也解决了诸多问题
+    //如果用微信本身的api播放声音，声音当然就无法自动缓存了。通过使用上述缓存方案可以统一缓存系统，两者api可以同时调用缓存的文件
+    //总之就是在LayaLoader加载之前将素材转移到客户端，这样不用修改laya本身的文件，也解决了诸多问题
     Laya.URL.basePath = cacheURL
     Laya.loader.load(resources, Laya.Handler.create(this, () => {
       //后续游戏逻辑
