@@ -171,8 +171,9 @@ function boot() {
       wx.setStorageSync('bundleVer', bundleVer)
     }
     //此时修改basePath为本地的缓存路径
-    //这时所有文件将从本地读取，这样做的原因本身是因为laya.wxmini适配文件太渣，除声音和图片无法缓存
-    //如果用微信本身的api播放声音，声音也是无法缓存的，但这样可以统一缓存系统，两者api可以同时调用缓存的文件
+    //这时所有文件将从本地读取，这样做原因是laya.wxmini.js无法自动缓存除声音图片外的文件，
+    //即使使用downloadfile缓存也无法通过loader加载
+    //如果用微信本身的api播放声音，声音也是无法自动缓存的，但这样可以统一缓存系统，两者api可以同时调用缓存的文件
     //最简单的解决方法是在加载之前将文件转移到客户端，这样不用修改laya本身的文件，也解决了诸多问题
     Laya.URL.basePath = cacheURL
     Laya.loader.load(resources, Laya.Handler.create(this, () => {
