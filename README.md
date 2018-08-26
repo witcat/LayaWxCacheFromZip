@@ -3,7 +3,6 @@
 可以保持原本资源加载模式不变，测试真机可以离线加载所有资源  
 在微信开发工具中offline模式会读取资源失败，这个问题可能是开发工具offline模式不能重定向的原因  
 有需求的或许可以通过修改laya.wxmini.js文件修复
-> https://developers.weixin.qq.com/minigame/dev/tutorial/ability/file-system.html
 
 这样做本身目的就是扔掉laya.wxmini.js的那一套缓存方案...  
 首先atlas等除了声音和图片以外的资源并不能正常的缓存后读取（即使通过手动调用downloadfile缓存  
@@ -13,5 +12,8 @@
 
 另外这样也一定程度简化了版本管理..不需要在用IDE的发布功能附加hash了  
 
-但这样有个问题是项目不能在浏览器环境调试了..可以用gulp等工具实时合并，直接扔掉ide在微信开发工具中调试
-> https://github.com/witcat/gulpLayaairWxDemo
+但这样有个问题是项目不能在浏览器环境调试了..可以用gulp等工具实时合并，直接扔掉ide在微信开发工具中调试  
+
+> https://ldc.layabox.com/doc/?nav=zh-js-5-0-5  
+ https://developers.weixin.qq.com/minigame/dev/tutorial/ability/file-system.html  
+ https://github.com/witcat/gulpLayaairWxDemo
