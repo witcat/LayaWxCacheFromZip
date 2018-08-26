@@ -3,8 +3,8 @@
 使用小游戏api下载压缩包并解压到客户端缓存的例子  
 
 可以保持原本资源加载模式不变，测试真机可以离线加载所有资源  
-在微信开发工具中offline模式会读取资源失败，这个问题可能是开发工具offline模式不能重定向的问题
-http:// 的前缀和laya.wxmini.js中的逻辑冲突，有需要的请修改laya.wxmini.js文件
+在微信开发工具中offline模式会读取资源失败，这个问题可能是开发工具offline模式不能重定向的问题  
+有需要的或许可以通过修改laya.wxmini.js文件修复
 https://developers.weixin.qq.com/minigame/dev/tutorial/ability/file-system.html
 
 这样做本身目的就是扔掉laya.wxmini.js的那一套缓存方案...  
